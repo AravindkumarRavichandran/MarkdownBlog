@@ -1,11 +1,15 @@
 const express = require('express')
+const dotenv = require('dotenv');
 const mongoose = require('mongoose')
 const Article = require('./models/article')
 const articleRouter = require('./routes/articles')
 const methodOverride = require('method-override')
 const app = express()
 
-mongoose.connect('mongodb+srv://aravind123:aravind123@cluster0.idnad.mongodb.net/blog?retryWrites=true&w=majority', {
+// Load env vars
+dotenv.config({ path: './config/config.env' });
+
+mongoose.connect(process.env.MONGO_URI, {
   useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true
 })
 
